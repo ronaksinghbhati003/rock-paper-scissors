@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 function App() {
   let[game,setGame]=useState('Click on Button');
+  let[bot,setBot]=useState(' ');
    let computer=["rock","paper","scissors"];
   
    let result=(value)=>{
@@ -10,36 +11,47 @@ function App() {
      let userMove=value;
      if(userMove=="rock"&&computerMove=="scissors")
      {
-      setGame("User Win");
+      setGame('User Win');
+      setBot(computerMove)
      }
      else if(userMove=="scissors"&&computerMove=="paper"){
       setGame("User Win");
+      setBot(computerMove)
      }
      else if(userMove=="paper"&&computerMove=="rock"){
       setGame("User Win");
+      setBot(computerMove)
      }
      else if(userMove=="scissors"&&computerMove=="scissors"){
       setGame("Tie");
+      setBot(computerMove)
      }
      else if(userMove=="paper"&&computerMove=="paper"){
       setGame("Tie");
+      setBot(computerMove)
      }
      else if(userMove=="rock"&&computerMove=="rock")
       {
        setGame("Tie");
+       setBot(computerMove)
       }
     else{
       setGame("computer Win")
+      setBot(computerMove)
     }
     setTimeout(()=>{
       setGame("Click on Button")
-    },1000)
+      setBot(' ');
+    },1500)
    }
   
   
   return (
     <>
-    <div className=" rounded-2xl max-w-[400px] min-h-[150px] bg-black mx-auto my-[50px] flex justify-center items-center text-[40px] uppercase text-green-500 font-bold">{game}</div>
+    <div className=" rounded-2xl max-w-[400px] min-h-[150px] bg-black mx-auto my-[50px] flex justify-center items-center text-[20px] uppercase text-green-500 font-bold flex-col">
+        <div>{game}</div>
+        <div>{bot==' '?" ":" Computer Move"} {bot}</div>
+    </div>
      <div className=" max-w-[500px] mx-auto shadow-2xl flex justify-center gap-[20px] p-[20px_20px] bg-green-200 rounded-[20px]">
        <input type="button" value="rock" onClick={(e)=>{
           result(e.target.value);
